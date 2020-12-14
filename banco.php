@@ -1,4 +1,9 @@
 <?php
+
+/*https://www.php.net/manual/en/language.types.string.php
+https://www.php.net/manual/pt_BR/book.mbstring.php */
+require_once 'funcoes.php';
+
 //Array Associativo
 $contasCorrente = [
     '123.456.789-10' => [
@@ -13,17 +18,49 @@ $contasCorrente = [
 
     '123.456.789-01' => [
     'titular' => 'Lucas',
-    'saldo' => 2300
+    'saldo' => 480
     ]
 ];
-//adicionando conta
-$contasCorrente['321.654.981-23'] = [
-    'titular' => 'Laura',
-    'saldo' => 5200
-];
-$contasCorrente['321.654.981-23']['saldo'] -= 500;
-//foreach = não importa o indice
-//no foreach podemos acessar o índice e o valor do elemento da iteração
+
+$contasCorrente['123.456.789-11'] = sacar($contasCorrente['123.456.789-11' ], 312);
+$contasCorrente['123.456.789-10'] = sacar($contasCorrente['123.456.789-10' ], 127);
+$contasCorrente['123.456.789-01'] = sacar($contasCorrente['123.456.789-01' ], 385);
+
+$contasCorrente['123.456.789-01'] = depositar($contasCorrente['123.456.789-01'], 1000);
+
+// Remove um indice
+// unset($contasCorrente['123.456.789-10']);
+
+
+// titularLetrasMaiusculas($contasCorrente['123.456.789-01']); //LUCAS
+/*
+echo "<ul>";
 foreach($contasCorrente as $cpf => $conta){
-    echo $cpf . " " . $conta['titular'] . " " . $conta['saldo'].  PHP_EOL;
+    exibeConta($conta);
 }
+echo "</ul>";  */
+
+?> 
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Banco</title>
+</head>
+<body>
+    <h1>Contas Corrente</h1>
+
+    <d1>  <!--codigo php e html juntos -->
+        <?php foreach($contasCorrente as $cpf => $conta) { ?>
+        <dt>
+            <h3><?= $conta['titular']; ?> - <?=  $cpf;  ?></h3>
+        </dt>
+        <dd>
+            Saldo: <?= $conta['saldo']; ?>
+        </dd>
+        <?php } ?>
+    </d1>
+</body>
+</html>
